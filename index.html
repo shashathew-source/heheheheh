@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Special</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #ffccd5, #ffc2d1);
+    overflow-x: hidden;
+}
+
+/* Envelope Section */
+.envelope-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Flower Envelope */
+.envelope {
+    width: 200px;
+    height: 200px;
+    background: #ff8fab;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.envelope:hover {
+    transform: scale(1.1);
+}
+
+.envelope::before,
+.envelope::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: #ffb3c6;
+    border-radius: 50%;
+}
+
+.envelope::before {
+    top: -100px;
+}
+
+.envelope::after {
+    left: -100px;
+}
+
+/* Slides Section */
+.slides {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+h1 {
+    color: #d6336c;
+    font-size: 40px;
+}
+
+p {
+    font-size: 18px;
+    color: #800f2f;
+    max-width: 600px;
+    margin: auto;
+}
+
+button {
+    margin: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #c9184a;
+}
+
+/* Image placeholders */
+.image-box {
+    width: 250px;
+    height: 250px;
+    background: #ffb3c6;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #800f2f;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Envelope -->
+<div class="envelope-container" id="envelopeSection">
+    <div class="envelope" onclick="openSlides()"></div>
+</div>
+
+<!-- Slides -->
+<div class="slides" id="slidesSection">
+
+    <!-- Slide 1 -->
+    <div class="slide active">
+        <h1>Happy Valentine's Day 💖</h1>
+        <p>Click here to add title</p>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <h1>Summary 💌</h1>
+        <p>Click here to add summary</p>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <h1>Memories 📸</h1>
+        <div class="image-box">Add image here</div>
+        <div class="image-box">Add image here</div>
+    </div>
+
+    <!-- Navigation -->
+    <div>
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+function openSlides() {
+    document.getElementById("envelopeSection").style.display = "none";
+    document.getElementById("slidesSection").style.display = "block";
+}
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) {
+            slide.classList.add("active");
+        }
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+</script>
+
+</body>
+</html>
